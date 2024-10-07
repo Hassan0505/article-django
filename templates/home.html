@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>hello user</h2>
+
+
+    {% for article in articles %}
+        <div class="card m-2">
+            <div class="card-header">
+                Featured
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{ article.title }}</h5>
+                
+                {% if article.is_price_locked %}
+                <span class="rounded-pill p-2 bg-success text-light">{{ article.price }}</span>
+                <a href="{% url 'pay' article.id %}" class="btn btn-primary" style="color:white;"> payment</a>
+                {% else %}
+                <a href="{% url 'detail' article.id %}" class="btn btn-primary">Go somewhere</a>
+                <span class="badge badge-success" style="color: green;"> Free :) </span>
+                {% endif %}
+
+                
+            </div>
+
+        </div>
+    {% endfor %}
+
+{% endblock %}
